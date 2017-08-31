@@ -1,0 +1,25 @@
+<script src="https://code.jquery.com/jquery-1.12.3.js"></script>
+
+<div id="container">
+	<div id ="liste">
+		Object:
+		<ul>
+		<% i=0 %>
+		<% @emails.each do |email| %>
+			<% i = i + 1 %>
+			<li><div id=<%="object#{i}"%>> <%=email.object%> </div></li>
+			<script >
+			 	$('#object'+<%=i%>).click(function(){ 
+			 		$('#contenu').html("<h4><%=email.object%></h4>");
+			 		$('#contenu').append("<p><%=email.body%></p>");
+			 		$('#contenu').append(<%= button_to "delete", @email, remote: true, :method => :delete %>);
+			 	});
+			</script>
+	 	<% end %>
+	 	</ul>
+	</div>
+	email
+	<div id ="contenu"></div>
+</div>
+
+
